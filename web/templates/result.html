@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quantum Hash Lab Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+  </head>
+  <body>
+    <main class="container py-5">
+      <a href="{{ url_for('index') }}" class="back-link">← Try another message</a>
+      <h1 class="mt-3">Quantum Hash Lab Result</h1>
+      <p class="lead">Input: <strong>{{ message }}</strong></p>
+
+      <section class="panel">
+        <h2>1. Quantum hash creation</h2>
+        <p>We derive a small digest from SHA-256 and encode each digest bit as the sign of a normalized quantum-state amplitude.</p>
+        <div class="hash-box">{{ quantum_hash.label }}</div>
+        <p><strong>Digest bits:</strong> {{ quantum_hash.bits|join("") }}</p>
+        <p><strong>State normalization:</strong> {{ "%.4f"|format(quantum_hash.normalization) }} (1.0 is valid)</p>
+        <p class="small-note">This phase fingerprint is a toy quantum-state model for teaching. It is not a replacement for SHA-256 or a certified post-quantum primitive.</p>
+      </section>
+
+      <section class="panel">
+        <h2>2. Quantum attack demonstration</h2>
+        <p>For the tiny candidate domain used here, the program performs an exact classical search and compares it with the ideal query estimate for Grover's algorithm.</p>
+        <div class="row g-3">
+          <div class="col-md-3"><div class="metric"><strong>{{ attack.domain_size }}</strong><span>candidate inputs</span></div></div>
+          <div class="col-md-3"><div class="metric"><strong>{{ attack.classical_queries }}</strong><span>classical queries</span></div></div>
+          <div class="col-md-3"><div class="metric"><strong>{{ attack.ideal_grover_queries }}</strong><span>ideal Grover queries</span></div></div>
+          <div class="col-md-3"><div class="metric"><strong>{{ "%.1f"|format(attack.quantum_speedup_estimate) }}×</strong><span>estimated reduction</span></div></div>
+        </div>
+        <p class="mt-3"><strong>Attack result:</strong> {{ attack.classical_found }} matches the toy target hash.</p>
+        <p class="small-note">The Grover number is theoretical: this page does not claim to execute a fault-tolerant quantum computer.</p>
+      </section>
+
+      <section class="panel">
+        <h2>3. Quantum defense comparison</h2>
+        <p>A quantum circuit alone does not automatically create a secure hash. The defense shown here is increasing the digest width so generic quantum preimage security remains high.</p>
+        <div class="table-responsive">
+          <table class="table table-dark table-hover align-middle">
+            <thead><tr><th>Profile</th><th>Output</th><th>Classical security</th><th>Quantum security</th></tr></thead>
+            <tbody>
+              {% for defense in defenses %}
+              <tr><td>{{ defense.name }}<br><small>{{ defense.explanation }}</small></td><td>{{ defense.output_bits }} bits</td><td>~{{ defense.classical_security_bits }} bits</td><td>~{{ defense.quantum_security_bits }} bits</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Classical SHA-256 baseline</h2>
+        <pre class="hash-box">{{ digest }}</pre>
+        <p>Changing one character changed <strong>{{ changed_bits }}</strong> of 256 digest bits ({{ "%.2f"|format(changed_percent) }}%). This is the avalanche effect.</p>
+        <p>{{ explanation }}</p>
+      </section>
+    </main>
+  </body>
+</html>

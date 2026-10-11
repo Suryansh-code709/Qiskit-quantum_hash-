@@ -1,0 +1,10 @@
+{
+  "cryptographic_note": "SHA-256 is a hash function, not encryption. It is deterministic and suitable for integrity checks, not reversible plaintext recovery.",
+  "known_answer_vectors": {
+    "abc": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+    "empty_string": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "hello_world": "b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9",
+    "qiskit_fall_fest": "c55e9f0884547e07333c524634407027057b54749ed30785d3a82e92f7324f11"
+  },
+  "sha256_digest_length_bits": 256
+}

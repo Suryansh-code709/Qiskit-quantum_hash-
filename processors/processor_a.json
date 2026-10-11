@@ -1,0 +1,6 @@
+{
+  "name": "Processor A",
+  "num_qubits": 6,
+  "coupling_map": [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5]],
+  "description": "Linear nearest-neighbor connectivity with low routing overhead."
+}

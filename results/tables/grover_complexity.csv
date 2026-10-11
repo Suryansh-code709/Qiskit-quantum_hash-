@@ -1,0 +1,2 @@
+n_bits,search_space,classical_queries,quantum_queries,speedup_ratio,success_probability_target
+256,1.157920892373162e+77,5.78960446186581e+76,2.6725714601624168e+38,2.1663048296990965e+38,0.5

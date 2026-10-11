@@ -1,0 +1,13 @@
+body { background: #07111f; color: #e6f0ff; font-family: Inter, system-ui, sans-serif; }
+.hero, .panel { background: #101f35; border: 1px solid #29466b; border-radius: 18px; box-shadow: 0 12px 30px #0004; }
+.hero h1 { font-weight: 800; letter-spacing: -.03em; }
+.panel { padding: 1.5rem; margin: 1rem 0; }
+.panel h2 { color: #72d6ff; font-size: 1.25rem; }
+.small-note { color: #a9bdd7; }
+.metric { background: #102844; border: 1px solid #2c527c; border-radius: 14px; padding: 1rem; height: 100%; }
+.metric strong, .metric span { display: block; }
+.metric strong { color: #7ff0c2; font-size: 1.4rem; }
+.metric span { color: #b8cbe2; margin-top: .25rem; }
+.hash-box { background: #07111f; border: 1px solid #2c527c; border-radius: 10px; color: #7ff0c2; padding: 1rem; overflow-wrap: anywhere; white-space: pre-wrap; }
+.back-link { color: #72d6ff; text-decoration: none; }
+.table { --bs-table-bg: #102844; }
